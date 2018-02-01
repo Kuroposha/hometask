@@ -31,6 +31,6 @@ def get_days_to_new_year():
         days_in_year = 365
         days_in_year = 366
     #2) определить вискокосный ли год, подсчитать кол-во дней
-    days_to = days_in_year - (date_n[1]-1) * 7 - date_n[2)
+    days_to = days_in_year - (date_n[1]-1) * 7 - date_n[2])
     #4) отнять от дней в году - прошедшие дни
     return days_to #5) вернуть дни
