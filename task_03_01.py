@@ -28,10 +28,9 @@ def get_days_to_new_year():
     date_n = list(date.isocalendar(datetime.today()))
 
     if ((date_n[0] % 100 == 0) and (date_n[0] % 400 != 0)) or (date_n[0] % 4 != 0):
-        days_in_year = 366 # 365 дней в году + 1 января
-    else:
-        days_in_year = 367 # 366 дней в году + 1 января
+        days_in_year = 365
+        days_in_year = 366
     #2) определить вискокосный ли год, подсчитать кол-во дней
-    days_to = days_in_year - (date_n[1]-1) * 7 - (date_n[2]+1)
+    days_to = days_in_year - (date_n[1]-1) * 7 - date_n[2)
     #4) отнять от дней в году - прошедшие дни
     return days_to #5) вернуть дни
