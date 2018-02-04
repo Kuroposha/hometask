@@ -31,12 +31,12 @@ def dec_to(number_in, num_base):
         num_str = '0'
     while number_in != 0:
         last_n = number_in % num_base
-        num_str = (str(last_n) if last_n < 10 else serch_in_dickt(last_n)) + num_str
+        num_str = (str(last_n) if last_n < 10 else serch_in(last_n)) + num_str
         number_in //= num_base
     return num_str
 
 #украденная функция работы со словарем
-def serch_in_dickt(hex_num):
+def serch_in(hex_num):
     """
     поиск значений и подставление в словарь
     """
@@ -54,7 +54,8 @@ def to_dec(string_in, num_base):
     for num_len in range(lon_str): #запускаю цикл проверки
         if string_in[num_len] in DICKT_CONWERT:
             string_in[num_len] = DICKT_CONWERT[string_in[num_len]]
-            string_in_out += (int(string_in[num_len])) * (num_base ** (lon_str-num_len-1))
+            string_in_out += (int(string_in[num_len])) * \
+                             (num_base ** (lon_str-num_len-1))
     return string_in_out
 
 def dec2bin(number):
