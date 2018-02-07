@@ -12,20 +12,7 @@
 - текст задачи
 - запланированное время выполнения
 """
-# Это будет main
-dict_of_menu = { 1 : '1. Вывести список задач', 2 : '2. Добавить задачу', \
-                 3 : '3. Отредактировать задачу', 4 : '4. Завершить задачу', \
-                 5 : '5. Начать задачу сначала', 6 : '6. Выход' }
+from daily_log import manu_daily_log
 
-def menu_daily_log():
-    """функция вывода меню"""
-    print('Ежедневник.\nГлавное меню. Выберете действие:\n')
-    for i in dict_of_menu:
-        print(dict_of_menu[i])
-    print('\nВведите номер действия:\n')
-    num_act = int(input())
-    return print(dict_of_menu.get(num_act))
 
 menu_daily_log()
-# def list_of_task(dict_of_menu[1]):
-#
