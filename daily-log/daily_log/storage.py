@@ -1,3 +1,5 @@
+"""работа с бд"""
+
 import os.path as Path
 import sqlite3
 
@@ -33,12 +35,11 @@ SQL_UPDATE_ALL_USER_WANT = '''
 
 def dict_factory(cursor, row):# УРА! это дерьмо наконец то заработало!
     """функция, магическим образом помогающая превращать нашу таблицу в словарь для красоты"""
-    d = {}
+    dict_t = {}
 
     for idx, col in enumerate(cursor.description):
-        d[col[0]] = row[idx]
-
-    return d
+        dict_t[col[0]] = row[idx]
+    return dict_t
 
 
 def connect(db_name=None):
@@ -48,7 +49,6 @@ def connect(db_name=None):
 
     conn = sqlite3.connect(db_name)
     conn.row_factory = dict_factory
-
     return conn
 
 
@@ -57,8 +57,8 @@ def initualize(conn, creation_script=None):
     if creation_script is None:
         creation_script = Path.join(Path.dirname(__file__), 'resourses', 'schema.sql')
 
-    with conn, open(creation_script) as f:
-        conn.executescript(f.read())
+    with conn, open(creation_script) as file_f:
+        conn.executescript(file_f.read())
 
 
 def add_task(conn, name_task, description_t):
@@ -69,13 +69,8 @@ def add_task(conn, name_task, description_t):
 
     with conn:
         cursor = conn.execute(SQL_INSERT_TASK, (name_task, description_t,))
+        return cursor
 
-
-# def find_task(conn, id_t):
-#
-#     with conn:
-#         cursor = conn.execute(SQL_SELECT_ID, (id_t,))
-#         return cursor.fetchone()
 
 def find_all(conn):# УРА! это дерьмо наконец то заработало!
     """Найти все задачи"""
@@ -85,10 +80,10 @@ def find_all(conn):# УРА! это дерьмо наконец то зараб�
 
 
 def find_for_status_task(conn, status_t):
-     """Ищем задачи по статусу 0\1"""
-     with conn:
-         cursor = conn.execute(SQL_SELECT_STATUS, (status_t,))
-         return cursor.fetchall()
+    """Ищем задачи по статусу 0\1"""
+    with conn:
+        cursor = conn.execute(SQL_SELECT_STATUS, (status_t,))
+        return cursor.fetchall()
 
 
 def change_status_task(conn, status_t, id_t):# УРА! это дерьмо наконец то заработало!
@@ -98,6 +93,7 @@ def change_status_task(conn, status_t, id_t):# УРА! это дерьмо на�
 
     with conn:
         cursor = conn.execute(SQL_UPDATE_TASK_STATUS, (status_t, id_t,))
+        return cursor
 
 
 def change_task_options(conn, name_task, description_t, id_t):
@@ -108,10 +104,4 @@ def change_task_options(conn, name_task, description_t, id_t):
     with conn:
         cursor = conn.execute(SQL_UPDATE_ALL_USER_WANT, (name_task, description_t, id_t,))
 
-# def find_open_task(conn, name_task):
-#     """Перезапуск задачи"""
-#     name_task =
-#     with conn:
-#         cursor = con.execute (SQL_SELECT_CLOSE, (name_task))
-#         # меняем статус на 0
-#         return
+        return cursor
