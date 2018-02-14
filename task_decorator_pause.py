@@ -11,7 +11,9 @@ import time
 def pause(sec):
     """Декоратор с параметрами pause"""
     def decorator(func):
-        """как бы декоратор без враппера, потому что саму функцию мы не меняем"""
-        time.sleep(sec)
-        return func
+        def wrapper(*args, **kwargs):
+        """love this wrapper"""
+            time.sleep(sec)
+            return func(*args, **kwargs)
+        return wrapper
     return decorator
