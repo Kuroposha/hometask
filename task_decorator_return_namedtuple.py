@@ -13,10 +13,14 @@ from collections import namedtuple
 
 def return_namedtuple(*tup_arg): # рабоатет
 <<<<<<< HEAD
+<<<<<<< HEAD
     """Декоратор с параметрами для кортежа"""
 =======
     """Декоратор с параметрами для кортежа"""
 >>>>>>> 454d737d09efe8ce0bfbfcdab5959adb91d73923
+=======
+    """Декоратор с параметрами для кортежа"""
+>>>>>>> 51e6fcf1b9606af81c4e6b9364a728f7ed6c741a
     def decorator(func):
         """Декоратор для функции"""
         def wrapper(*args, **kwargs):
