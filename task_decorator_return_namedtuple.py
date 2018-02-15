@@ -12,7 +12,7 @@
 from collections import namedtuple
 
 def return_namedtuple(*tup_arg): # рабоатет
-"""Декоратор с параметрами для кортежа"""
+    """Декоратор с параметрами для кортежа"""
     def decorator(func):
         """Декоратор для функции"""
         def wrapper(*args, **kwargs):
