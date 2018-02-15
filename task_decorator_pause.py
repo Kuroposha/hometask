@@ -3,16 +3,16 @@
 Декоратор пауза
 Требуется реализовать декоратор с параметрами pause, который приостанавливает
  выполнение функции на указанное количество секунд.
-
 В решении пригодится стандартный модуль time.
 """
 import time
 
-def pause(sec):
+def pause(sec):#Оно должно работать
     """Декоратор с параметрами pause"""
     def decorator(func):
+        """Декоратор для функции"""
         def wrapper(*args, **kwargs):
-        """love this wrapper"""
+            """Обертка для внутренностей функции"""
             time.sleep(sec)
             return func(*args, **kwargs)
         return wrapper
