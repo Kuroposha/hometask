@@ -15,20 +15,22 @@
 """
 from collections import namedtuple
 
-def return_namedtuple(*args):
+def return_namedtuple(*tup_arg): # рабоатет
+    """Декоратор с параметрами для кортежа"""
     def decorator(func):
-        def wrapper():
-            result = func()
+        """Декоратор для функции"""
+        def wrapper(*args, **kwargs):
+            """Мой любимый враппер"""
+            result = func(*args, **kwargs)
             if isinstance(result , tuple):
-                klassnoe_name = namedtuple('ostroumnoe_name', list(args))
+                klassnoe_name = namedtuple('ostroumnoe_name', list(tup_arg))
                 result = klassnoe_name(*result)
-                return result
+            return result
         return wrapper
     return decorator
-
 # @return_namedtuple('one', 'two', 'three')
 # def func():
 #     return 1, 2, 3
-#
-# r = func()
-# print(r.three) # 3
+# #
+# # r = func()
+# # print(r.three) # 3
