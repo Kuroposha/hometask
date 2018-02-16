@@ -12,7 +12,7 @@ def make_token(username, password):
 
 def try_to_pass(try_it):
     with open('token.txt') as f:
-        iniz = f.read()
+        iniz = f.read().strip()
     return try_it == iniz
 
 
