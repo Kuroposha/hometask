@@ -21,7 +21,7 @@ def login_required(func):
         for i in range(3):
             user_check = input()
             pass_check = input()
-            it_make = make_token(try_to_pass(user_check, pass_check))
+            it_make = try_to_pass(make_token(user_check, pass_check))
             if it_make:
                 break
 
