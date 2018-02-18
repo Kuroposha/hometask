@@ -26,9 +26,9 @@ def get_free_land(info_land, info_beds):
         raise ValueError('Размер грядки больше размера участка')
     else:
         s_lost = s_land % s_bed
-        print(s_lost)
+    return s_lost
 
-get_free_land((100, "1:1"), (15, 25))
-get_free_land((0, "1:1"), (15, 25))
-get_free_land((100, "1:1"), (5, 0))
-get_free_land((6, "3:2"), (40, 28))
+# get_free_land((100, "1:1"), (15, 25))
+# get_free_land((0, "1:1"), (15, 25))
+# get_free_land((100, "1:1"), (5, 0))
+# get_free_land((6, "3:2"), (40, 28))
