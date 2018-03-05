@@ -19,36 +19,43 @@
 
 class Course(object):
     """ """
-    def __init__(self, name, date_start, duration, location, coast, programm):
+    def __init__(self, subject, date_start, duration, location, coast, programm, complexity, grud_doc):
         """ """
+    def get_teacher(Teacher):
+        pass
+    
+    def get_groupe(Groupe):
+        pass
 
-    def set_education():
-        """ """
-
-    def set_teach():
-
-    def get_
+    def start_course(date_start, duration):
+        '''''''
+        if .Group = 1 acd .Teasher = 1:
+            date_start + duration = date_end
+            
 
 
 class Teacher(object):
     """ """
-    def __init__(self, name, age, exp, **specialisation):
-        """ """
-
-    def get_teaching():
-
+    def __init__(self, name, age, exp, **subjects, congestion, charisma):
+        pass
+        
+    def set_course():
+        pass
     def setting_hometask():
-
+        pass
     def presintation():
-
+        pass
     def reading_stubif_esse():
-
-    def det_mark():
-
+        pass
+    def set_mark():
+        pass
 class Group(object):
     """ """
-    def __init__(self, name, students_num):
+    def __init__(self, name, stud_num_min, stud_num_max, avege_score):
+        
 
 
 class Student(object):
     """ """
+    def __init__(self, name, age, level, aim, capitan=0):
+        pass
