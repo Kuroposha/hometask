@@ -13,8 +13,13 @@ class ValidatorException(Exception):
 class Validator(metaclass=ABCMeta):
     types = {}
 
+<<<<<<< HEAD
     # def __init__(self, value):
     #     self.value = value
+=======
+#     def __init__(self, value):
+#         self.value = value
+>>>>>>> e52bd3d13aef08d72b520aa05fbfc94cdc6fd9b6
 
     @abstractmethod
     def validate(self, value):
@@ -44,16 +49,26 @@ class Validator(metaclass=ABCMeta):
         return klass()
 
 class EMailValidator(Validator):
+<<<<<<< HEAD
     # def __init__(self, value):
     #     super().__init__(value)
+=======
+#     def __init__(self, value):
+#         super().__init__(value)
+>>>>>>> e52bd3d13aef08d72b520aa05fbfc94cdc6fd9b6
 
     def validate(self, value):
         return '@' and '.' in value
 
 
 class DateTimeValidator(Validator):
+<<<<<<< HEAD
     # def __init__(self, value):
     #     super().__init__(value)
+=======
+#     def __init__(self, value):
+#         super().__init__(value)
+>>>>>>> e52bd3d13aef08d72b520aa05fbfc94cdc6fd9b6
 
     def validate(self, value):
         for key in ['%Y-%m-%d',
