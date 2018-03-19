@@ -2,10 +2,15 @@
 меняем меню
 """
 import sys
+import time
 from abc import ABCMeta, abstractmethod
+from collections import OrderedDict
 
 #from daily_log import storage
 #get_connection = lambda: storage.connect('daily_task.sqlite')
+class CommandException(Exception):
+    pass
+
 
 class Command(metaclass=ABCMeta):
     __command = {}
@@ -43,44 +48,76 @@ class Command(metaclass=ABCMeta):
             raise NameError
 
         return klass(*args, **kwargs)
-
-@Command.command('exit')
-class ExitCommand(Command):
-    def execute(self):
-        pass
-
 #
-# class ShowCommand(Command):
-#     pass
+# @Command.command('exit')
+# class ExitCommand(Command):
+#     def execute(self):
+#         pass
 
-@Command.command('menu')
-class MenuCommand(Command):
+@Command.command('show')
+class ShowCommand(Command):
     pass
+#
+# @Command.command('menu')
+# class MenuCommand(Command):
+#     pass
 
 @Command.command('list')
 class ListCommand(Command):
     def execute(self):
         pass
+#
+#
+# @Command.command('add')
+# class AddCommand(Command):
+#     pass
+#
+#
+# @Command.command('edit')
+# class EditCommand(Command):
+#     pass
+#
+#
+# @Command.command('close')
+# class CloseCommand(Command):
+#     pass
+#
+#
+# @Command.command('replay')
+# class ReplayCommand(Command):
+#     pass
 
 
-@Command.command('add')
-class AddCommand(Command):
-    pass
+class Menu(object):
+    # __command = {}
+    def __init__(self):
+        self.commands = OrderedDict({})
 
 
-@Command.command('edit')
-class EditCommand(Command):
-    pass
+    def add_command(self, name, klass):
+
+        if not name:
+            raise CommandException('Command must have a name!')
+
+        if not issubclass(klass, Command):
+            raise CommandException('Class "{}" is not Command!'.format(klass))
+
+        self.commands[name] = klass
 
 
-@Command.command('close')
-class CloseCommand(Command):
-    pass
+    def execute(self, name, *args, **kwargs):
+        command = self.commands.get(name)
 
+        if not command:
+            raise CommandException('Command with name "{}" not found'.format(name))
+        return command().execute(*args, **kwargs)
 
-@Command.command('replay')
-class ReplayCommand(Command):
-    pass
+    def __iter__(self):
+        self.__copy = self.commands.copy()
+        return self
 
-
-class Menu(metaclass=ABCMeta):
+    def __next__(self):
+        while self.__copy:
+            return self.__copy.popitem()
+            sleep(1)
+        raise StopIteration
